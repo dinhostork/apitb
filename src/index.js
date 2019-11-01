@@ -6,6 +6,9 @@ const port = 3333
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({ extended: false })) //parametros
-app.use(cors) //origem
+app.use(cors()) //origem
+
+require('./controllers/authController')(app) //importa o auth
+
 app.listen(port) //escuta a porta
 console.log('escutando a porta', port)
