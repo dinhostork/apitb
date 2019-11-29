@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
-const url = "mongodb+srv://127.0.0.1:27017/tinderbooks"  //ip do sevidor
-mongoose.connect(url)
+const url = "mongodb://127.0.0.1:27017/tinderbooks"  //ip do sevidor
+
+const options = {useUnifiedTopology: true,  reconnectTries: Number.MAX_VALUE, reconnectInterval: 500, poolSize: 5, useNewUrlParser: true };
+mongoose.set('useFindAndModify', false);
+//mongoose.Promise = global.Promise;
+mongoose.set('useCreateIndex', true);
+ 
+mongoose.connect(url, options)
 
 mongoose.connection.on('connected', () => {
     console.log('Aplicação conectada ao banco de dados')
